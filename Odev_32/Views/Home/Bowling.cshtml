@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Bowling Ligi</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css">
+  <style>
+    /* CSS Stil tanımlamaları */
+    .list-group-item-amator {
+      background-color: darkgray;
+      color: black;
+    }
+
+    .list-group-item-yari-profesyonel {
+      background-color: green;
+      color: white;
+    }
+
+    .list-group-item-profesyonel {
+      background-color: pink;
+      color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-3">Bowling Ligi Oyuncuları ve Ortalamaları</h2>
+    <ul class="list-group">
+      @for (int i = 1; i <= 15; i++)
+      {
+        @* Rastgele lig ve ortalamayı seçme *@
+        @{
+          string lig;
+          int ortalama = new Random().Next(180, 241); // 180-240 arasında rastgele sayı seçme
+          if (ortalama >= 180 && ortalama <= 190)
+          {
+            lig = "Amatör Lig";
+          }
+          else if (ortalama >= 191 && ortalama <= 219)
+          {
+            lig = "Yarı Profesyonel Lig";
+          }
+          else
+          {
+            lig = "Profesyonel Lig";
+          }
+        }
+        <li class="list-group-item 
+                  @(lig == "Amatör Lig" ? "list-group-item-amator" : 
+                    (lig == "Yarı Profesyonel Lig" ? "list-group-item-yari-profesyonel" : "list-group-item-profesyonel"))">
+          @i-@lig: @ortalama
+        </li>
+      }
+    </ul>
+  </div>
+</body>
+</html>
